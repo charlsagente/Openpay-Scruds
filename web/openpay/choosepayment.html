@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/menuradios.css">
+    <script type="text/javascript"
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#radio1').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/cardpayment.jsp?payment=1';
+            });
+
+            $('#radio2').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/cardpayment.jsp?payment=2';
+            });
+
+            $('#radio3').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/store.html';
+            });
+
+            $('#radio4').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/bank.html';
+            });
+
+            $('#radio5').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/scrudsplan.html';
+            });
+
+            $('#radio6').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/scrudswebhooks.html';
+            });
+
+
+        });
+    </script>
+</head>
+
+<body>
+<h1>Elija método de pago</h1>
+<div>
+    <input type="radio" name="radio" id="radio1" class="radio" checked/>
+    <label for="radio1">Pago directo con TDC/TDD</label>
+</div>
+
+<div>
+    <input type="radio" name="radio" id="radio2" class="radio"/>
+    <label for="radio2">Suscripción con TDC/TDD</label>
+</div>
+
+<div>
+    <input type="radio" name="radio" id="radio3" class="radio"/>
+    <label for="radio3">Pago en tiendas de conveniencia</label>
+</div>
+
+<div>
+    <input type="radio" name="radio" id="radio4" class="radio"/>
+    <label for="radio4">Transferencia bancaria</label>
+</div>
+
+
+<div>
+    <input type="radio" name="radio" id="radio5" class="radio"/>
+    <label for="radio5">Scruds Plan</label>
+</div>
+
+
+<div>
+    <input type="radio" name="radio" id="radio6" class="radio"/>
+    <label for="radio6">Scruds Webhooks</label>
+</div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../css/formstyles.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="../js/planscruds.js">
+    </script>
+</head>
+<body>
+<form id="createform" class="basic-grey">
+    <h1>Alta de Plan
+        <span>Rellene todos los campos del formulario.</span>
+    </h1>
+    <label>
+        <span>Nombre del plan :</span>
+        <input id="planname" type="text" name="planname" placeholder="Nombre del plan" />
+    </label>
+
+    <label>
+        <span>Precio :</span>
+        <input id="price" type="number" name="price" placeholder="Precio" />
+    </label>
+    <br>
+    <label>
+        <span>Repetir :</span>
+        <input id="repetir" type="number" name="repetir" placeholder="Repetir"/>
+    </label>
+    <br>
+    <label>
+        <span>Unidad de repetici&oacute;n :</span>
+        <select name="unidad">
+            <option value="1">Semana</option>
+            <option value="2">Mes</option>
+            <option value="3">Año</option>
+        </select>
+    </label>
+    <label>
+        <span>D&iacute;as de prueba:</span>
+        <input id="diasprueba" type="number" name="diasprueba" placeholder="D&iacute;as de prueba"/>
+    </label>
+    <br>
+    <label>
+        <span>&nbsp;</span>
+        <input id="btnSubmit" type="button" class="button" value="Send" />
+    </label>
+</form>
+<span id="responsecreation">plan creation</span>
+
+<br>
+
+<form class="basic-grey" id="deleteplan">
+    <h1>Eliminaci&oacute;n de Plan
+        <span>Rellene todos los campos del formulario.</span>
+    </h1>
+    <label>
+        <span>Id del plan :</span>
+        <input id="idplann" type="text" name="idplann" placeholder="Id del plan" />
+    </label>
+    <br>
+    <label>
+        <span>&nbsp;</span>
+        <input id="btnEliminar" type="button" class="button" value="Eliminar" />
+    </label>
+</form>
+<label id="deleteconfirm"></label>
+</body>
+</html>
