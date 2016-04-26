@@ -1,19 +1,19 @@
 # Openpay Scruds
 
-This project is intended to integrate a full web project for credit card, direct debit,
+This project is intended to integrate a full web project for credit card, debit card,
  convenience stores and bank reference as payment methods using [Openpay](http://www.openpay.mx/ "Openpay") provider
 
-##Prerequisites
+## Prerequisites
 *   Java jdk 1.7+
 *   Apache tomcat 7+
 *   Maven 3.x
 
 
 
-##Installation
+## Installation
 
 
-###Follow the instructions 
+### Follow the instructions
 
 * Check/update your tomcat credentials in $CATALINA_HOME/conf/tomcat-users.xml
 
@@ -36,10 +36,10 @@ This project is intended to integrate a full web project for credit card, direct
  </configuration>
  ```
 
-* Tomcat must be running first 
+* Tomcat must be running first
 * From command line type:
  ```
- mvn clean install tomcat7:redeploy
+ mvn clean install tomcat7:redeploy -Dmaven.test.skip=true
  ```
 
 * Start your browser in:
@@ -51,8 +51,8 @@ This project is intended to integrate a full web project for credit card, direct
 * Test the examples and watch your browser console to see the outputs
 
 * Here are some [credit card numbers](http://www.openpay.mx/docs/testing.html "card numbers")  for testing
+![alt tag](https://cloud.githubusercontent.com/assets/948024/14825553/08369728-0ba0-11e6-9b7b-d10d2481dae2.jpg)
 
 * Test classes are included for unit scruds
 
 * Full doc of openpay API here: http://www.openpay.mx/docs/api/
-
