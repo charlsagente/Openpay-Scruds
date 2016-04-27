@@ -48,7 +48,7 @@ This project is intended to integrate a full web project for credit card, debit 
  http://{host}:{port}/openpay-scruds/openpay/choosepayment.html
  ```
 
-* Test the examples and watch your browser console to see the outputs
+* Test the examples and look at your browser console to see the outputs
 
 * Here are some [credit card numbers](http://www.openpay.mx/docs/testing.html "card numbers")  for testing
 ![alt tag](https://cloud.githubusercontent.com/assets/948024/14825553/08369728-0ba0-11e6-9b7b-d10d2481dae2.jpg)
