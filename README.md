@@ -44,7 +44,7 @@ This project is intended to integrate a full web project for credit card, debit 
 
 * Start your browser in:
 
- ```
+ ``` 
  http://{host}:{port}/openpay-scruds/openpay/choosepayment.html
  ```
 

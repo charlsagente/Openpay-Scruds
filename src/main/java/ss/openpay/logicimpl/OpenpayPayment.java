@@ -1,10 +1,7 @@
 package ss.openpay.logicimpl;
 
 import com.google.gson.Gson;
-import mx.openpay.client.Card;
-import mx.openpay.client.Charge;
-import mx.openpay.client.Customer;
-import mx.openpay.client.Subscription;
+import mx.openpay.client.*;
 import mx.openpay.client.core.OpenpayAPI;
 import mx.openpay.client.core.requests.transactions.CreateBankChargeParams;
 import mx.openpay.client.core.requests.transactions.CreateCardChargeParams;
@@ -93,7 +90,7 @@ public class OpenpayPayment {
      * @param user_name
      * @return
      */
-    public static String directPayTDC(String token_id, String amount, String device_sesion_id,String email,String user_name ) {
+    public static String directPayTDC(String token_id, String amount, String device_sesion_id,String email,String user_name,Boolean preaprobed ) {
         OpenpayAPI api=createApi();
 
         Customer customer = new Customer();
@@ -107,6 +104,9 @@ public class OpenpayPayment {
         request.description("Cargo directo a TDC");
         request.deviceSessionId(device_sesion_id);
         request.customer(customer);
+        if (preaprobed)
+            request.capture(false); //Para preaprobar el pago
+
         String json;
         try {
             Charge charge = api.charges().create(request);

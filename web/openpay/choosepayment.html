@@ -32,6 +32,10 @@
                 window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/scrudswebhooks.html';
             });
 
+            $('#radio7').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/enviopagos.html';
+            });
+
 
         });
     </script>
@@ -70,5 +74,18 @@
     <input type="radio" name="radio" id="radio6" class="radio"/>
     <label for="radio6">Scruds Webhooks</label>
 </div>
+
+<div>
+    <input type="radio" name="radio" id="radio7" class="radio"/>
+    <label for="radio7">Env&iacute;o de pagos</label>
+</div>
+
+<div>
+    <input type="radio" name="radio" id="radio8" class="radio"/>
+    <label for="radio7">Pagos preaprobados</label>
+</div>
+
+
+
 </body>
 </html>

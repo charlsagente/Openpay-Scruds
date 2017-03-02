@@ -61,6 +61,13 @@
                         <div class="sctn-col cvv"><label>Código de seguridad</label>
                             <div class="sctn-col half"><input type="text" placeholder="3 dígitos" autocomplete="off" data-openpay-card="cvv2"></div>
                         </div>
+                        <div class="sctn-col half last">
+                            <label>Preaprobar:</label>
+                            <div class="sctn-col half">
+                            <input type="checkbox" name="preaprobado" id="preaprobado">
+                            </div>
+
+                        </div>
                     </div>
 
                     <div class="openpay"><div class="logo">Transacciones realizadas vía:</div>
