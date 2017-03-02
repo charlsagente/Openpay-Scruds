@@ -117,7 +117,7 @@ $(document).ready(function () {
             {
                 console.log(data);
                 $(".bkng-tb-cntnt").empty();
-                $(".bkng-tb-cntnt").html(data);
+                $(".bkng-tb-cntnt").html(JSON.stringify(data));
 
                 $("#responsecreation").text = JSON.stringify(data);
                 //window.location=(payments.config.BASE_URL+"/Return.html");
