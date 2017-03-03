@@ -65,18 +65,19 @@ $(document).ready(function () {
     }
     else if ($.urlParam('payment') == "1") {
 
-        $('#atempselect').append("<h1>2 Licencias por demanda: $200</h1>");
+        $('#atempselect').append("<h1>2 Licencias por demanda: $300</h1>");
     }
     else if ($.urlParam('payment') == "3") {
 
-        $('#atempselect').append("<h1>Pago on Demand, pago inicial $200 MXN.</h1>");
+        $('#atempselect').append("<h1>Pago on Demand, pago inicial $300 MXN.</h1>");
     }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////77
 
     $('#pay-button').on('click', function (event) { //http://www.openpay.mx/docs/card-charge.html
         event.preventDefault();
-        $("#pay-button").prop("disabled", true);
+        $('#pay-button').unbind('click');
+        //$("#pay-button").prop("disabled", true);
         if (payments.config.PROVIDER == "openpay")
             OpenPay.token.extractFormAndCreate('payment-form', sucess_callbak, error_callbak);
     });
@@ -95,7 +96,7 @@ $(document).ready(function () {
         var param = $.urlParam('payment');
         if (param == "1") {//pago normal con TDC
             service = "payment/tdc";
-            payment.amount = 200;
+            payment.amount = 300;
         }
         else if (param == "2") { //suscripción con TDC
             service = "payment/recurrent";
@@ -135,7 +136,7 @@ $(document).ready(function () {
     var error_callbak = function (response) {
         var desc = response.data.description != undefined ? response.data.description : response.message;
         alert("ERROR [" + response.status + "] " + desc);
-        $("#pay-button").prop("disabled", false);
+        $('#pay-button').bind('click', true);
     };
 
 ///////////////////////////////////////////////////////////////

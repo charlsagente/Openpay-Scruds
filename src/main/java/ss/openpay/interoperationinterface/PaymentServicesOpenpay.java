@@ -32,8 +32,15 @@ public class PaymentServicesOpenpay {
         String device_sesion_id = UtilOpenPay.getJsonValue(jsonParams, "device_sesion_id");
         String planId = UtilOpenPay.getJsonValue(jsonParams, "planId");
 
+        String stringPreaprobed = UtilOpenPay.getJsonValue(jsonParams, "preaprobed");
+        Boolean preaprobed;
+        if (stringPreaprobed.contentEquals("true"))
+            preaprobed = true;
+        else
+            preaprobed = false;
 
-        return OpenpayPayment.Suscribe(token_id, user_name, email, device_sesion_id, planId);
+
+        return OpenpayPayment.Suscribe(token_id, user_name, email, device_sesion_id, planId,preaprobed);
     }
 
 
@@ -100,6 +107,17 @@ public class PaymentServicesOpenpay {
         String name = UtilOpenPay.getJsonValue(jsonParams, "name");
         String mail = UtilOpenPay.getJsonValue(jsonParams, "mail");
         return OpenpayPayment.payBank(description, amount, name, mail);
+    }
+
+    @POST
+    @Path("refund")
+    @Produces("application/json")
+    public String refund(String jsonString){
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonParams = (JsonObject) jsonParser.parse(jsonString);
+        String idtransaccion = UtilOpenPay.getJsonValue(jsonParams, "idtransaccion");
+
+    return OpenpayPayment.refund(idtransaccion);
     }
 
 }
