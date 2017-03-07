@@ -65,7 +65,7 @@ $(document).ready(function () {
     }
     else if ($.urlParam('payment') == "1") {
 
-        $('#atempselect').append("<h1>2 Licencias por demanda: $300</h1>");
+        $('#atempselect').append("<h1>Pago único o a MSI</h1>");
     }
     else if ($.urlParam('payment') == "3") {
 
@@ -92,11 +92,13 @@ $(document).ready(function () {
         payment.email = $('input[name=email]').val();
         payment.user_name = $('input[data-openpay-card=holder_name]').val();
         payment.preaprobed = $('#preaprobado').is(":checked");
+        payment.msi = $('input[name=msi]:checked', '#payment-form').val();
+
 
         var param = $.urlParam('payment');
         if (param == "1") {//pago normal con TDC
             service = "payment/tdc";
-            payment.amount = 300;
+            payment.amount = $('#amount').val();
         }
         else if (param == "2") { //suscripción con TDC
             service = "payment/recurrent";
@@ -128,6 +130,7 @@ $(document).ready(function () {
                 console.log(data)
                 $("#responsecreation").text = "<br>" + JSON.stringify(data) + "</br>";
                 //window.location=(payments.config.BASE_URL+"/Cancel.html");
+                $('#pay-button').bind('click', true);
             }
         });
 

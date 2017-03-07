@@ -3,10 +3,7 @@ package ss.openpay.logicimpl;
 import com.google.gson.Gson;
 import mx.openpay.client.*;
 import mx.openpay.client.core.OpenpayAPI;
-import mx.openpay.client.core.requests.transactions.CreateBankChargeParams;
-import mx.openpay.client.core.requests.transactions.CreateCardChargeParams;
-import mx.openpay.client.core.requests.transactions.CreateStoreChargeParams;
-import mx.openpay.client.core.requests.transactions.RefundParams;
+import mx.openpay.client.core.requests.transactions.*;
 import mx.openpay.client.exceptions.OpenpayServiceException;
 import mx.openpay.client.exceptions.ServiceUnavailableException;
 import org.slf4j.Logger;
@@ -95,7 +92,7 @@ public class OpenpayPayment {
      * @param user_name
      * @return
      */
-    public static String directPayTDC(String token_id, String amount, String device_sesion_id, String email, String user_name, Boolean preaprobed) {
+    public static String directPayTDC(String token_id, String amount, String device_sesion_id, String email, String user_name, Boolean preaprobed, String msi) {
         OpenpayAPI api = createApi();
 
         Customer customer = new Customer();
@@ -111,8 +108,11 @@ public class OpenpayPayment {
         request.customer(customer);
         if (preaprobed)
             request.capture(false); //Para preaprobar el pago
-        final DeferralPayments deferralPayments = new DeferralPayments(3);
-        //request.deferralPayments(deferralPayments);
+
+        if (msi!=null && !msi.isEmpty()) {
+            final DeferralPayments deferralPayments = new DeferralPayments(Integer.valueOf(msi));
+            request.deferralPayments(deferralPayments);
+        }
 
         String json;
         try {
@@ -266,14 +266,39 @@ public class OpenpayPayment {
         return json;
     }
 
-    public static String refund(String idTransaccion) {
+    public static String refund(String idTransaccion, String amount) throws Exception {
         OpenpayAPI api = createApi();
         RefundParams request = new RefundParams();
         request.chargeId(idTransaccion);
+        if (amount != null && !amount.isEmpty())
+            request.amount(new BigDecimal(amount));
         request.description("Monto de cargo devuelto");
         String json="";
         try {
             Charge charge=api.charges().refund(request);
+            Gson gson = new Gson();
+            json = gson.toJson(charge);
+        } catch (OpenpayServiceException e) {
+            json=e.getDescription();
+            throw new Exception(json);
+
+        } catch (ServiceUnavailableException e) {
+            e.printStackTrace();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return json;
+    }
+
+    public static String confirm(String idtransaccion, String amount) {
+        OpenpayAPI api = createApi();
+        ConfirmCaptureParams request = new ConfirmCaptureParams();
+        request.chargeId(idtransaccion);
+        request.amount(new BigDecimal(amount));
+        String json="";
+        try {
+            Charge charge = api.charges().confirmCapture(request);
             Gson gson = new Gson();
             json = gson.toJson(charge);
         } catch (OpenpayServiceException e) {

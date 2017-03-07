@@ -47,27 +47,43 @@
                     </div>
                     <div class="sctn-row">
 
-                        <div class="sctn-col">
+                        <div class="sctn-col l">
                             <label>Número de tarjeta</label><input type="text" autocomplete="off" data-openpay-card="card_number">
                         <div id="cardtype"></div></div>
 
-                        <div class="sctn-col l">
+                        <div class="sctn-col">
                             <label>Fecha de expiración</label>
-                            <div class="sctn-col half l"><input type="text" placeholder="Mes" data-openpay-card="expiration_month"></div>
-                            <div class="sctn-col half l"><input type="text" placeholder="Año" data-openpay-card="expiration_year"></div>
+                            <div class="sctn-col half"><input type="text" placeholder="Mes" data-openpay-card="expiration_month"></div>
+                            <div class="sctn-col half"><input type="text" placeholder="Año" data-openpay-card="expiration_year"></div>
                         </div>
                     </div>
                     <div class="sctn-row">
-                        <div class="sctn-col cvv"><label>Código de seguridad</label>
-                            <div class="sctn-col half"><input type="text" placeholder="3 dígitos" autocomplete="off" data-openpay-card="cvv2"></div>
+                        <div class="sctn-col cvv l"><label>Código de seguridad</label>
+                            <div class="sctn-col half l"><input type="text" placeholder="3 dígitos" autocomplete="off" data-openpay-card="cvv2"></div>
                         </div>
-                        <div class="sctn-col half last">
+                        <div class="sctn-col">
                             <label>Preaprobar:</label>
                             <div class="sctn-col half">
                             <input type="checkbox" name="preaprobado" id="preaprobado">
                             </div>
 
                         </div>
+                    </div>
+                    <div class="sctn-row">
+                        <div class="sctn-col l">
+                            <label>Cantidad</label><input type="text" autocomplete="off" id="amount" value="300">
+                        </div>
+
+                        <div class="sctn-col">
+                            <label>MSI:</label>
+
+                            <input type="radio" name="msi" value="3">3<br>
+                            <input type="radio" name="msi" value="6">6<br>
+                            <input type="radio" name="msi" value="9">9<br>
+                            <input type="radio" name="msi" value="12">12<br>
+                            <input type="radio" name="msi" value="18">18<br>
+                        </div>
+
                     </div>
 
                     <div class="openpay"><div class="logo">Transacciones realizadas vía:</div>

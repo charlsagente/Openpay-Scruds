@@ -40,6 +40,10 @@
                 window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/refund.html';
             });
 
+            $('#radio9').click(function(event){
+                window.location = location.protocol + '//' + location.host + '/' + window.location.pathname.split("/")[1]+'/openpay/confirm.html';
+            });
+
 
         });
     </script>
@@ -89,7 +93,10 @@
     <label for="radio8">Reembolso</label>
 </div>
 
-
+<div>
+    <input type="radio" name="radio" id="radio9" class="radio"/>
+    <label for="radio9">Confirmar Pago</label>
+</div>
 
 </body>
 </html>

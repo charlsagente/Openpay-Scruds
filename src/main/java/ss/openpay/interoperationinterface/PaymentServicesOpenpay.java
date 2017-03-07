@@ -9,6 +9,8 @@ import ss.openpay.logicimpl.OpenpayPayment;
 import ss.openpay.logicimpl.util.UtilOpenPay;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by Carlos Perez on 29/03/2016.
@@ -40,7 +42,7 @@ public class PaymentServicesOpenpay {
             preaprobed = false;
 
 
-        return OpenpayPayment.Suscribe(token_id, user_name, email, device_sesion_id, planId,preaprobed);
+        return OpenpayPayment.Suscribe(token_id, user_name, email, device_sesion_id, planId, preaprobed);
     }
 
 
@@ -72,6 +74,7 @@ public class PaymentServicesOpenpay {
         String email = UtilOpenPay.getJsonValue(jsonParams, "email");
         String user_name = UtilOpenPay.getJsonValue(jsonParams, "user_name");
         String stringPreaprobed = UtilOpenPay.getJsonValue(jsonParams, "preaprobed");
+        String msi = UtilOpenPay.getJsonValue(jsonParams, "msi");
         Boolean preaprobed;
         if (stringPreaprobed.contentEquals("true"))
             preaprobed = true;
@@ -79,7 +82,7 @@ public class PaymentServicesOpenpay {
             preaprobed = false;
 
 
-        return OpenpayPayment.directPayTDC(token_id, amount, device_sesion_id, email, user_name, preaprobed);
+        return OpenpayPayment.directPayTDC(token_id, amount, device_sesion_id, email, user_name, preaprobed, msi);
 
     }
 
@@ -112,12 +115,31 @@ public class PaymentServicesOpenpay {
     @POST
     @Path("refund")
     @Produces("application/json")
-    public String refund(String jsonString){
+    public Response refund(String jsonString) {
         JsonParser jsonParser = new JsonParser();
         JsonObject jsonParams = (JsonObject) jsonParser.parse(jsonString);
         String idtransaccion = UtilOpenPay.getJsonValue(jsonParams, "idtransaccion");
+        String amount = UtilOpenPay.getJsonValue(jsonParams, "amount");
+        String json="";
+        try {
 
-    return OpenpayPayment.refund(idtransaccion);
+            json=OpenpayPayment.refund(idtransaccion, amount);
+        }catch (Exception e){
+            return Response.status(300).entity(e.getMessage()).build();
+        }
+        return Response.ok(json, MediaType.APPLICATION_JSON).build();
+    }
+
+    @POST
+    @Path("confirm")
+    @Produces("application/json")
+    public String confirm(String jsonString) {
+        JsonParser jsonParser = new JsonParser();
+        JsonObject jsonParams = (JsonObject) jsonParser.parse(jsonString);
+        String idtransaccion = UtilOpenPay.getJsonValue(jsonParams, "idtransaccion");
+        String amount = UtilOpenPay.getJsonValue(jsonParams, "amount");
+
+        return OpenpayPayment.confirm(idtransaccion, amount);
     }
 
 }
