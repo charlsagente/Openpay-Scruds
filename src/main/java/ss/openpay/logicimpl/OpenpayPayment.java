@@ -295,7 +295,8 @@ public class OpenpayPayment {
         OpenpayAPI api = createApi();
         ConfirmCaptureParams request = new ConfirmCaptureParams();
         request.chargeId(idtransaccion);
-        request.amount(new BigDecimal(amount));
+        if (amount!=null && !amount.isEmpty())
+            request.amount(new BigDecimal(amount));
         String json="";
         try {
             Charge charge = api.charges().confirmCapture(request);
